@@ -1,7 +1,8 @@
 const contacts = require("./db/contacts");
 console.log(contacts);
-const { Command } = require("commander");
-const program = new Command();
+
+const { program } = require("commander");
+
 program
   .option("-a, --action <type>", "choose action")
   .option("-i, --id <type>", "user id")
@@ -9,7 +10,7 @@ program
   .option("-e, --email <type>", "user email")
   .option("-p, --phone <type>", "user phone");
 
-program.parse(process.argv);
+program.parse();
 
 const argv = program.opts();
 
@@ -35,13 +36,4 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
   }
 };
 
-// invokeAction({ action: "list" });
-// invokeAction({ action: "get", id: "C9sjBfCo4UJCWjzBnOtxl" });
-// invokeAction({
-//   action: "add",
-//   name: "Andrea WanDerline",
-//   email: "ander.1@gmail.com",
-//   phone: "(420) 732-2161",
-// });
-// invokeAction({ action: "remove", id: "q_FkSoEsFazCwWviQ96cR" });
 invokeAction(argv);
